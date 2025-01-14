@@ -90,7 +90,7 @@ public class ArmaControlador : MonoBehaviour
     }
 
     private void InstanciarBala(){
-        //Dar dano ao objeto
+        PlayerMng.disparoPlayer.DanoAoObjeto();//Dar dano ao objeto
 
         pente--;
 
@@ -104,9 +104,16 @@ public class ArmaControlador : MonoBehaviour
 
         //Ativar o audio do disparo
 
-        //Ativar o muzzleFlash
+        muzzleFlash.SetActive(true);//Ativar o muzzleFlash
 
         //Instanciar a capsula
+        GameObject cp = Instantiate(capsula);
+        //Posicionar a capsula na posição que vai ser ejetada
+        cp.transform.position = posicaoCapsula.position;
+        //Posicionar a rotação na mesma rotação de saída da capsula
+        cp.transform.rotation = posicaoCapsula.rotation;
+        //Chamar a função para ejetar a capsula
+        cp.GetComponent<EjetarCapsula>().Ejetar();
     }
 
     //Incrementar mais munições a arma
