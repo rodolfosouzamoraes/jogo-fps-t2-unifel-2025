@@ -35,7 +35,7 @@ public class VisaoCamera : MonoBehaviour
         RaycastHit hit;
         //Verificar se o raio encontrou algo
         if(Physics.Raycast(raio,out hit, Mathf.Infinity)){
-            Debug.Log($"Alvo: {hit.transform.gameObject.name}");
+            //Debug.Log($"Alvo: {hit.transform.gameObject.name}");
 
             Debug.DrawRay(transform.position, 
             transform.TransformDirection(Vector3.forward) * hit.distance, 

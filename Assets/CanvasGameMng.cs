@@ -131,4 +131,13 @@ public class CanvasGameMng : MonoBehaviour
     public bool ColetouTodasAsChaves(){
         return totalChavesColetadas == iconesChaves.Length-1 ? true : false;
     }
+
+    public void ExibirTelaFinal(){
+        fimDeJogo = true;
+
+        // Pegar o tempo final do jogo
+        // Configurar a tela final
+
+        Debug.Log("Jogo completado!!!");
+    }
 }
