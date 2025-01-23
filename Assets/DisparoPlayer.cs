@@ -92,6 +92,8 @@ public class DisparoPlayer : MonoBehaviour
                 Instantiate(impactoBalaInimigo, PlayerMng.visaoCamera.hitAlvo.point,rotacaoDoImpacto);
 
                 //Pegar o código do inimigo e tirar o dano dele
+                var inimigo = PlayerMng.visaoCamera.AlvoVisto.GetComponent<InimigoControlador>();
+                inimigo.DecrementarVida(armaAtiva.danoInimigo);
             }
             else{
                 Instantiate(impactorBala, PlayerMng.visaoCamera.hitAlvo.point,rotacaoDoImpacto);

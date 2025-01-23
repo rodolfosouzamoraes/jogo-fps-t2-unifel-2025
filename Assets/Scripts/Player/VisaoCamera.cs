@@ -45,6 +45,21 @@ public class VisaoCamera : MonoBehaviour
             hitAlvo = hit;
 
             //Lógica para exibir a vidad do inimigo que está sendo visto
+            if(tagAlvo == "Inimigo"){
+                //verificar se o ultimo inimigo visto é o atual inimigo
+                if(ultimoInimigoVisto != hit.transform.gameObject && ultimoInimigoVisto != null){
+                    ultimoInimigoVisto.GetComponent<InimigoControlador>().ExibirOuOcultarBarraDeVida(false);
+                }
+                AlvoVisto.GetComponent<InimigoControlador>().ExibirOuOcultarBarraDeVida(true);
+                ultimoInimigoVisto = hit.transform.gameObject;
+            }
+            else{
+                //Verificar se existe um inimigo visto na variavel
+                if(ultimoInimigoVisto != null){
+                    ultimoInimigoVisto.GetComponent<InimigoControlador>().ExibirOuOcultarBarraDeVida(false);
+                    ultimoInimigoVisto = null;
+                }
+            }
         }
         else{
             tagAlvo = "";

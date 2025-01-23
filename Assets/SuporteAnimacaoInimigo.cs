@@ -7,14 +7,18 @@ public class SuporteAnimacaoInimigo : MonoBehaviour
     private Animator animator;
     private InimigoControlador controlador;
     
-    //Variavel que manipula a distancia do inimigo distante
+    private InimigoDistancia inimigoDistancia;//Variavel que manipula a distancia do inimigo distante
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        controlador = GetComponentInParent<InimigoControlador>();
 
-        //Configurar inimigo distante
+        try{
+            inimigoDistancia = GetComponentInParent<InimigoDistancia>();
+        }
+        catch{}            
 
         int idIdle = new System.Random().Next(1,6);
         animator?.SetFloat("id_idles",idIdle);
@@ -46,10 +50,10 @@ public class SuporteAnimacaoInimigo : MonoBehaviour
     }
 
     public void DanoAoPlayer(){
-
+        controlador?.DanoAoPlayer();
     }
 
     public void AtaqueDistancia(){
-
+        inimigoDistancia?.AtaqueDistancia();
     }
 }
