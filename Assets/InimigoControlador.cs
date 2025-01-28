@@ -123,9 +123,10 @@ public class InimigoControlador : MonoBehaviour
         if(vida<=0){
             estaMorto = true;
             
-            //Contabilizar a morte zumbi
+            CanvasGameMng.Instance.IncrementarMortesZumbi();//Contabilizar a morte zumbi
 
-            //Decrementar a quantidade de zumbis no jogo
+            var instanciarInimigos = FindObjectOfType<InstanciarInimigos>();//Decrementar a quantidade de zumbis no jogo
+            instanciarInimigos.DecrementarQtdInimigosNaFase();
 
             agent.destination = transform.position;
             suporteAnimacaoInimigo.PlayDeath();

@@ -34,6 +34,9 @@ public class MovimentarPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CanvasGameMng.Instance.fimDeJogo == true) return;
+        if(PlayerMng.Instance.estaMorto == true) return;
+        
         //Movimentar o player
 
         //Obter Referencia frente e lateral do objeto

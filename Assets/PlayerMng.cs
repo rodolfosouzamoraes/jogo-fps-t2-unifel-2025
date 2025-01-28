@@ -22,21 +22,21 @@ public class PlayerMng : MonoBehaviour
 
     public bool estaMorto;
 
-    //GameObject da Lanterna
+    public GameObject lanterna;//GameObject da Lanterna
 
     // Update is called once per frame
     void Update()
     {
         //Ativar ou não a Lanterna
         if(Input.GetKeyDown(KeyCode.F)){
-            //Ligar ou desligar Lanterna
+            lanterna.SetActive(!lanterna.activeSelf);//Ligar ou desligar Lanterna
         }
     }
 
     public void MatarJogador(){
         estaMorto = true;
         Destroy(GetComponent<CapsuleCollider>());
-        //Habilitar fim de jogo
-        //Desabilitar armas
+        CanvasGameMng.Instance.fimDeJogo = true;//Habilitar fim de jogo
+        disparoPlayer.DesabilitarArmas();//Desabilitar armas
     }
 }

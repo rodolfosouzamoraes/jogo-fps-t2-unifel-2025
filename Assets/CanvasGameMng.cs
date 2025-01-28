@@ -34,6 +34,16 @@ public class CanvasGameMng : MonoBehaviour
     [Header("Conf Geral")]
     public bool fimDeJogo;
 
+    [Header("Conf Game Over")]
+    public GameObject pnlGameOver;
+
+    [Header("Conf Fim de Jogo")]
+    public GameObject pnlFimDeJogo;
+    public TextMeshProUGUI txtTempoFinal;
+    public TextMeshProUGUI txtTotalZumbisMortos;
+    private int totalZumbisMortos;
+    private int tempoFinal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +55,11 @@ public class CanvasGameMng : MonoBehaviour
         txtTempo.text = $"{totalTempo}";
         txtObjetivo.text = $"Colete as 7 chaves!";
 
+        totalZumbisMortos = 0;
+
         fimDeJogo = false;
+
+        CanvasLoadingMng.Instance.OcultarTelaDeCarregamento();
     }
 
     // Update is called once per frame
@@ -79,9 +93,9 @@ public class CanvasGameMng : MonoBehaviour
             PlayerMng.Instance.MatarJogador();
             pnlStatusPlayer.SetActive(false);
 
-            //Ativar tela de GameOver
+            pnlGameOver.SetActive(true);//Ativar tela de GameOver
 
-            ReiniciarJogo();//Reniciar Jogo depois de um tempo
+            Invoke("ReiniciarJogo",4.5f);//Reniciar Jogo depois de um tempo
         }
         txtVida.text = $"+{vidaJogador}";
     }
@@ -95,7 +109,7 @@ public class CanvasGameMng : MonoBehaviour
     }
 
     public void ReiniciarJogo(){
-        //Exibir tela de carregamento
+        CanvasLoadingMng.Instance.ExibirTelaDeCarregamento();//Exibir tela de carregamento
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -108,7 +122,7 @@ public class CanvasGameMng : MonoBehaviour
     public void VoltarParaMenu(){
         DesbloquearMouse();
         
-        //Exibir a tela de carregamento
+        CanvasLoadingMng.Instance.ExibirTelaDeCarregamento();//Exibir a tela de carregamento
 
         SceneManager.LoadScene(0);
     }
@@ -135,9 +149,22 @@ public class CanvasGameMng : MonoBehaviour
     public void ExibirTelaFinal(){
         fimDeJogo = true;
 
-        // Pegar o tempo final do jogo
-        // Configurar a tela final
+        tempoFinal = (int) totalTempo;// Pegar o tempo final do jogo
+        txtTempoFinal.text = $"{tempoFinal}";
+        txtTotalZumbisMortos.text = $"{totalZumbisMortos}";
+        
+        DBMng.SalvarDados(totalZumbisMortos,tempoFinal);//Salvar os Dados
 
-        Debug.Log("Jogo completado!!!");
+        pnlFimDeJogo.SetActive(true);
+        pnlStatusPlayer.SetActive(false);
+        pnlTopo.SetActive(false);
+
+        DesbloquearMouse();
+
+        PlayerMng.disparoPlayer.DesabilitarArmas();
+    }
+
+    public void IncrementarMortesZumbi(){
+        totalZumbisMortos++;
     }
 }

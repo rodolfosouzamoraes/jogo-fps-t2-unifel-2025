@@ -22,8 +22,7 @@ public class DisparoPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Verificar se o jogo acabou
-
+        if(CanvasGameMng.Instance.fimDeJogo == true) return;//Verificar se o jogo acabou
         if(PlayerMng.Instance.estaMorto == true) return;
 
         SelecionarArma();
