@@ -59,6 +59,8 @@ public class CanvasGameMng : MonoBehaviour
 
         fimDeJogo = false;
 
+        AudioMng.Instance.PlayAudioGame();
+
         CanvasLoadingMng.Instance.OcultarTelaDeCarregamento();
     }
 

@@ -11,6 +11,8 @@ public class ItemMunicao : MonoBehaviour
     private int municaoParaPistola;
     private int municaoParaFuzil;
     private int idArma;
+
+    public AudioClip audioMunicao;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +54,7 @@ public class ItemMunicao : MonoBehaviour
                 PlayerMng.disparoPlayer.IncrementarMunicaoFuzil(municaoParaFuzil);
                 break;
             }
-
+            AudioMng.Instance.PlayAudioVFX(audioMunicao);
             Destroy(gameObject);
         }        
     }

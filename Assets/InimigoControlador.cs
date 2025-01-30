@@ -21,6 +21,7 @@ public class InimigoControlador : MonoBehaviour
     private SuporteAnimacaoInimigo suporteAnimacaoInimigo;
     public GameObject barraDeVida;
     public float vida;    
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class InimigoControlador : MonoBehaviour
 
         ExibirOuOcultarBarraDeVida(false);
 
+        audioSource.volume = AudioMng.Instance.volumeVFX;
     }
 
     // Update is called once per frame
@@ -172,5 +174,10 @@ public class InimigoControlador : MonoBehaviour
         if(estaVendoPlayer == true){
             CanvasGameMng.Instance.DecrementarVidaJogador(danoAoPlayer);
         }
+    }
+
+    public void ConfigurarAudio(AudioClip audioClip){
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 }

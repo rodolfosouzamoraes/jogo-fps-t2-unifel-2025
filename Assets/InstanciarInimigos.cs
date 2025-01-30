@@ -10,6 +10,8 @@ public class InstanciarInimigos : MonoBehaviour
     public int maximoDeInimigosNaFase;
     private float tempoProximoInimigo;
     private int totalInimigosNaFase;
+
+    public AudioClip[] audiosZumbi;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,8 @@ public class InstanciarInimigos : MonoBehaviour
         var novoInimigo = Instantiate(inimigos[inimigoSorteado]);
 
         //Configurar audio do inimigo sorteado
+        var audioSorteado = new System.Random().Next(0, audiosZumbi.Length);
+        novoInimigo.GetComponent<InimigoControlador>().ConfigurarAudio(audiosZumbi[audioSorteado]);
 
         //Posicionar o inimigo na posição sorteada
         var agent = novoInimigo.GetComponent<NavMeshAgent>();

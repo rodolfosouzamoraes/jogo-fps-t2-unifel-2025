@@ -814,6 +814,7 @@ MonoBehaviour:
   pentePistola: {fileID: 3096042493853624766}
   penteFuzil: {fileID: 7565511553360383458}
   txtQtdMunicao: {fileID: 1102561450217528740}
+  audioMunicao: {fileID: 8300000, guid: 3b6fec642973bbf4a8934f180ddb5086, type: 3}
 --- !u!1 &6830284743141431170
 GameObject:
   m_ObjectHideFlags: 0
