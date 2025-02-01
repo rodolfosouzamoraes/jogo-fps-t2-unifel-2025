@@ -18,4 +18,24 @@ public static class DBMng
             PlayerPrefs.SetInt(TEMPO_JOGO,tempoJogo);
         }
     }
+
+    public static void SalvarVolume(float volumeVFX, float volumeMusica){
+        Volume volume = new Volume();
+        volume.vfx = volumeVFX;
+        volume.musica = volumeMusica;
+        var json = JsonUtility.ToJson(volume);
+        PlayerPrefs.SetString(VOLUME,json);
+    }
+
+    public static Volume ObterVolumes(){
+        var json = PlayerPrefs.GetString(VOLUME);
+        Volume volume = JsonUtility.FromJson<Volume>(json);
+        if(volume == null){
+            SalvarVolume(0.5f,0.2f);
+            json = PlayerPrefs.GetString(VOLUME);
+            volume = JsonUtility.FromJson<Volume>(json);
+        }
+
+        return volume;
+    }
 }
