@@ -28,6 +28,7 @@ public class CanvasGameMng : MonoBehaviour
     public GameObject [] iconesChaves;
     public TextMeshProUGUI txtTempo;
     public TextMeshProUGUI txtObjetivo;
+    public GameObject miniMapa;
     private float totalTempo;
     private int totalChavesColetadas;
 
@@ -69,6 +70,10 @@ public class CanvasGameMng : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
             VoltarParaMenu();
+        }
+
+        if(Input.GetKeyDown(KeyCode.M)){
+            miniMapa.SetActive(!miniMapa.activeSelf);
         }
         
         if(fimDeJogo == true) return;
