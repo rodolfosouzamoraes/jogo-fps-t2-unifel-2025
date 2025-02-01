@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -598,6 +598,9 @@ MonoBehaviour:
   pnlFimDeJogo: {fileID: 5907111048923141372}
   txtTempoFinal: {fileID: 6243003764208456387}
   txtTotalZumbisMortos: {fileID: 5046911532059893971}
+  cameraPlayer: {fileID: 0}
+  cameraFimDeJogo: {fileID: 0}
+  helicopterControlador: {fileID: 0}
 --- !u!1 &1832780503057369663
 GameObject:
   m_ObjectHideFlags: 0

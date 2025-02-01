@@ -9,7 +9,7 @@ public class PortaoControlador : MonoBehaviour
         if(CanvasGameMng.Instance.ColetouTodasAsChaves() == false) return;
 
         if(colisor.gameObject.tag.Equals("Player")){
-            CanvasGameMng.Instance.ExibirTelaFinal();
+            CanvasGameMng.Instance.DefinirFimDeJogo();
         }
     }
 }

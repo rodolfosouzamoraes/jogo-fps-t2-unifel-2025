@@ -110,4 +110,8 @@ public class MovimentarPlayer : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(rotacaoX,0,0);
         transform.rotation *= Quaternion.Euler(0,Input.GetAxis("Mouse X") * velocidadeCamera, 0);
     }
+
+    public void MutarAudio(){
+        audioSource.volume = 0;
+    }
 }

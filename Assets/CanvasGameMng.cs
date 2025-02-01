@@ -30,7 +30,7 @@ public class CanvasGameMng : MonoBehaviour
     public TextMeshProUGUI txtObjetivo;
     public GameObject miniMapa;
     private float totalTempo;
-    private int totalChavesColetadas;
+    private int totalChavesColetadas; //mudar para private
 
     [Header("Conf Geral")]
     public bool fimDeJogo;
@@ -44,6 +44,9 @@ public class CanvasGameMng : MonoBehaviour
     public TextMeshProUGUI txtTotalZumbisMortos;
     private int totalZumbisMortos;
     private int tempoFinal;
+    public GameObject cameraPlayer;
+    public GameObject cameraFimDeJogo;
+    public HelicopterControlador helicopterControlador;
 
     // Start is called before the first frame update
     void Start()
@@ -153,8 +156,17 @@ public class CanvasGameMng : MonoBehaviour
         return totalChavesColetadas == iconesChaves.Length-1 ? true : false;
     }
 
-    public void ExibirTelaFinal(){
+    public void DefinirFimDeJogo(){
         fimDeJogo = true;
+        PlayerMng.movimentarPlayer.MutarAudio();
+        cameraPlayer.SetActive(false);
+        cameraFimDeJogo.SetActive(true);
+        pnlStatusPlayer.SetActive(false);
+        pnlTopo.SetActive(false);
+        StartCoroutine(IniciarVooHelicopter());
+    }
+
+    public void ExibirTelaFinal(){
 
         tempoFinal = (int) totalTempo;// Pegar o tempo final do jogo
         txtTempoFinal.text = $"{tempoFinal}";
@@ -163,8 +175,7 @@ public class CanvasGameMng : MonoBehaviour
         DBMng.SalvarDados(totalZumbisMortos,tempoFinal);//Salvar os Dados
 
         pnlFimDeJogo.SetActive(true);
-        pnlStatusPlayer.SetActive(false);
-        pnlTopo.SetActive(false);
+        
 
         DesbloquearMouse();
 
@@ -173,5 +184,10 @@ public class CanvasGameMng : MonoBehaviour
 
     public void IncrementarMortesZumbi(){
         totalZumbisMortos++;
+    }
+
+    IEnumerator IniciarVooHelicopter(){
+        yield return new WaitForSeconds(3f);
+        helicopterControlador.IniciarVoo();
     }
 }
